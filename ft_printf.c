@@ -1,29 +1,86 @@
-#include "ft_printf_utils.h"
-#include <stdarg.h>
+// #include <stdarg.h>
+// #include <unistd.h>
 
-int	ft_printf(const char *input, ...)
+// void	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// }
+// void	ft_putstr(char *str)
+// {
+// 	while (*str)
+// 		ft_putchar(*str++);
+// }
+// void	ft_putnbr(int n)
+// {
+// 	long int long_n;
+
+// 	long_n = (long int)n;
+// 	if (long_n < 0)
+// 	{
+// 		ft_putchar('-');
+// 		long_n = -long_n;
+// 	}
+// 	if (long_n >= 10)
+// 		ft_putnbr(long_n / 10);
+// 	ft_putchar(long_n % 10 + '0');
+// }
+// void	ft_puthex(unsigned int n)
+// {
+// 	if (n >= 16)
+// 		ft_puthex(n / 16);
+// 	ft_putchar("0123456789abcdef"[n % 16]);
+// }
+
+// void	handle_char(va_list args)
+// {
+// 	ft_putchar(va_arg(args, int));
+// }
+// void	handle_string(va_list args)
+// {
+// 	ft_putstr(va_arg(args, char *));
+// }
+// void	handle_integer(va_list args)
+// {
+// 	ft_putnbr(va_arg(args, int));
+// }
+// void	handle_hex(va_list args)
+// {
+// 	ft_puthex(va_arg(args, unsigned int));
+// }
+
+
+// t_handler	get_handler(char specifier)
+// {
+// 	if (specifier == 'c')
+// 		return handle_char;
+// 	if (specifier == 's')
+// 		return handle_string;
+// 	if (specifier == 'd' || specifier == 'i')
+// 		return handle_integer;
+// 	if (specifier == 'x')
+// 		return handle_hex;
+// 	return NULL;
+// }
+#include "ft_printf.h"
+
+int	ft_printf(const char *format, ...)
 {
-	va_list			args;
-	unsigned int	i;
+	va_list	args;
+	int		i = 0;
+	t_handler	handler;
 
-	i = 0;
-	va_start(args, input);
-	while (*input != '\0')
+	va_start(args, format);
+	while (format[i])
 	{
-		if (*input == '%')
+		if (format[i] == '%' && (handler = get_handler(format[i + 1])))
 		{
-			input++;
-			if (*input == '%')
-				i += ft_print_char('%');
-			else if (ft_strchr("cspdiuxX", *input))
-				i += ft_check_type(input, va_arg(args, void *));
+			handler(args);
+			i++;
 		}
 		else
-		{
-			i += ft_print_char(*input);
-		}
-		input++;
+			ft_putchar(format[i]);
+		i++;
 	}
 	va_end(args);
-	return (i);
+	return (0);
 }

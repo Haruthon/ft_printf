@@ -55,9 +55,19 @@ t_handler	get_handler(char specifier)
 		return handle_char;
 	if (specifier == 's')
 		return handle_string;
+	if (specifier == 'p')
+		return handle_pointer
 	if (specifier == 'd' || specifier == 'i')
-		return handle_integer;
+		return handle_integer;//here
+	if (specifier == 'i')
+		return handle_base;
+	if (specifier == 'u')
+		return handle_unsigned;
 	if (specifier == 'x')
-		return handle_hex;
+		return handle_low_hex;
+	if (specifier == 'X')
+		return handle_up_hex;
+	if (specifier == '%')
+		return handle_percent;
 	return NULL;
 }

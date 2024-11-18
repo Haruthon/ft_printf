@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   check_size.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: harufuji <harufuji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:58 by harufuji          #+#    #+#             */
-/*   Updated: 2024/11/18 17:26:00 by harufuji         ###   ########.fr       */
+/*   Created: 2024/11/18 17:55:58 by harufuji          #+#    #+#             */
+/*   Updated: 2024/11/18 17:57:52 by harufuji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *input, ...)
+int	check_size(unsigned long long int n)
 {
-	va_list	args;
-	int		num;
+	int size;
 
-	num = 0;
-	va_start(args, input);
-	num = ft_count(input, args);
-	va_end(args);
-	return (num);
+	size = 1;
+	while (n > 10)
+	{
+		size++;
+		n /= 10;
+	}
+	return (size);
 }

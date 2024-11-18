@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_count.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: harufuji <harufuji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:58 by harufuji          #+#    #+#             */
-/*   Updated: 2024/11/18 17:26:00 by harufuji         ###   ########.fr       */
+/*   Created: 2024/11/18 17:26:06 by harufuji          #+#    #+#             */
+/*   Updated: 2024/11/18 17:26:08 by harufuji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *input, ...)
+int	ft_treat_char(const char *input, va_list args)
 {
-	va_list	args;
-	int		num;
+	size_t i;
+	size_t c;
 
-	num = 0;
-	va_start(args, input);
-	num = ft_count(input, args);
-	va_end(args);
-	return (num);
+	i = 0;
+	c = 0;
+	while (save[i])
+	{
+		if (save[i] == '%')
+		{
+			i++;
+			c += ft_treat(save[i], args);
+		}
+		else
+		{
+			ft_putchar_fd(save[i], 1);
+			c++;
+		}
+		i++;
+		if (save[i])
+			return (c);
+	}
+	return (c);
 }

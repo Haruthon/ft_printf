@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_treat_c.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: harufuji <harufuji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:58 by harufuji          #+#    #+#             */
-/*   Updated: 2024/11/18 17:26:00 by harufuji         ###   ########.fr       */
+/*   Created: 2024/11/18 17:31:39 by harufuji          #+#    #+#             */
+/*   Updated: 2024/11/18 17:35:08 by harufuji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *input, ...)
+int	ft_treat_c(int c)
 {
-	va_list	args;
-	int		num;
-
-	num = 0;
-	va_start(args, input);
-	num = ft_count(input, args);
-	va_end(args);
-	return (num);
+	write(1, &c, 1);
 }

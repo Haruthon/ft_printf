@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_treat_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: harufuji <harufuji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 17:25:58 by harufuji          #+#    #+#             */
-/*   Updated: 2024/11/18 17:26:00 by harufuji         ###   ########.fr       */
+/*   Created: 2024/11/18 17:33:08 by harufuji          #+#    #+#             */
+/*   Updated: 2024/11/18 17:38:04 by harufuji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_libft.h"
 
-int	ft_printf(const char *input, ...)
+int	ft_treat_s(char *src)
 {
-	va_list	args;
-	int		num;
+	size_t	len;
+	size_t	i;
 
-	num = 0;
-	va_start(args, input);
-	num = ft_count(input, args);
-	va_end(args);
-	return (num);
+	i = 0;
+	len = ft_strlen(src);
+	while (i < len)
+	{
+		ft_putchar_fd(src[i], 1);
+		i++;
+	}
+	return ((int)len);
 }

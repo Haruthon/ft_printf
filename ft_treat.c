@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_treat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: harufuji <harufuji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 17:26:12 by harufuji          #+#    #+#             */
-/*   Updated: 2024/11/18 17:54:20 by harufuji         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:40:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	ft_treat(int c, va_list args)
 	else if (c == 'X')
 		n = ft_treat_X(va_arg(args, unsigned int));
 	else if (c == '%')
-		n = ft_putstr_percent('%');
+		n = ft_treat_percent('%');
 	return (n);
 }
